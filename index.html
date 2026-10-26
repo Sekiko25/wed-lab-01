@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOMOREBI CAFÉ — สัมผัสความอบอุ่นและรสชาติกาแฟสไตล์ญี่ปุ่น</title>
+  <meta name="description" content="KOMOREBI CAFÉ คาเฟ่สไตล์ Modern Warm & Cozy Specialty Coffee เมล็ดกาแฟคัดสรร เบเกอรี่โฮมเมด และบรรยากาศผ่อนคลาย">
+  
+  <!-- Google Fonts: Sarabun & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Prompt"', '"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FDFBF7',
+              100: '#FBF7F0',
+              200: '#F4ECE1',
+              300: '#EADBC8',
+            },
+            wood: {
+              100: '#D7CCC8',
+              300: '#BCAAA4',
+              500: '#8D6E63',
+              600: '#6D4C41',
+              700: '#5D4037',
+              800: '#4E342E',
+              900: '#2E1C14',
+            },
+            matcha: {
+              50: '#F3F6ED',
+              100: '#E4ECD8',
+              500: '#6E8550',
+              600: '#5A6E41',
+            },
+            warmgray: '#78716C',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FDFBF7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D7CCC8;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #BCAAA4;
+    }
+  </style>
+</head>
+<body class="bg-cream-50 text-wood-900 font-sans antialiased selection:bg-wood-300 selection:text-wood-900">
+
+  <!-- ================= TOP ANNOUNCEMENT ================= -->
+  <div class="bg-wood-800 text-cream-100 text-xs sm:text-sm py-2 px-4 text-center tracking-wide flex items-center justify-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span>เปิดบริการทุกวัน 08:00 - 17:00 น. | ฟรีที่จอดรถ | Pet-Friendly ยินดีต้อนรับสัตว์เลี้ยง</span>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-50 bg-cream-50/90 backdrop-blur-md border-b border-cream-200 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-wood-700 text-cream-50 flex items-center justify-center font-semibold text-lg shadow-sm group-hover:scale-105 transition-transform">
+          K
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-lg sm:text-xl tracking-wider text-wood-900">KOMOREBI</span>
+          <span class="text-[10px] uppercase tracking-widest text-wood-500 font-medium">Coffee Roasters • 木漏れ日</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-wood-700">
+        <a href="#home" class="hover:text-wood-950 transition-colors">หน้าแรก</a>
+        <a href="#story" class="hover:text-wood-950 transition-colors">เรื่องราวร้าน</a>
+        <a href="#menu" class="hover:text-wood-950 transition-colors">เมนูแนะนำ</a>
+        <a href="#ambiance" class="hover:text-wood-950 transition-colors">บรรยากาศ</a>
+        <a href="#reviews" class="hover:text-wood-950 transition-colors">รีวิว</a>
+        <a href="#location" class="hover:text-wood-950 transition-colors">พิกัดร้าน</a>
+      </nav>
+
+      <!-- CTA Action Button -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-wood-700 hover:bg-wood-800 text-cream-50 text-sm font-medium shadow-sm hover:shadow transition-all duration-200">
+          <i data-lucide="map-pin" class="w-4 h-4"></i>
+          <span>เส้นทางมาร้าน</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 text-wood-800 hover:text-wood-950 focus:outline-none" aria-label="Toggle Menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-cream-100 border-b border-cream-200 px-6 py-5 transition-all">
+      <div class="flex flex-col gap-4 text-base font-medium text-wood-800">
+        <a href="#home" class="mobile-nav-link py-1 hover:text-wood-950">หน้าแรก</a>
+        <a href="#story" class="mobile-nav-link py-1 hover:text-wood-950">เรื่องราวร้าน</a>
+        <a href="#menu" class="mobile-nav-link py-1 hover:text-wood-950">เมนูแนะนำ</a>
+        <a href="#ambiance" class="mobile-nav-link py-1 hover:text-wood-950">บรรยากาศ</a>
+        <a href="#reviews" class="mobile-nav-link py-1 hover:text-wood-950">รีวิว</a>
+        <a href="#location" class="mobile-nav-link py-1 hover:text-wood-950">พิกัดร้าน</a>
+        <div class="pt-2 border-t border-cream-200 flex flex-col gap-2">
+          <a href="https://maps.google.com" target="_blank" class="w-full text-center py-2.5 bg-wood-700 text-cream-50 rounded-xl text-sm font-medium">
+            เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:0812345678" class="w-full text-center py-2.5 border border-wood-600 text-wood-700 rounded-xl text-sm font-medium">
+            โทรติดต่อ: 081-234-5678
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="home" class="relative overflow-hidden pt-8 pb-16 sm:py-24">
+    <!-- Decorative background glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Content -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-200/80 border border-cream-300 text-wood-700 text-xs sm:text-sm font-medium">
+            <span class="w-2 h-2 rounded-full bg-matcha-500"></span>
+            <span>Slow Living Coffee & Japanese Aesthetics</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-wood-900 tracking-tight leading-[1.25]">
+            กลิ่นหอมของกาแฟ<br>
+            และช่วงเวลาที่<span class="text-wood-600 underline decoration-amber-300 decoration-4 underline-offset-8">ช้าลง</span>
+          </h1>
+
+          <!-- Description -->
+          <p class="text-base sm:text-lg text-wood-700 leading-relaxed max-w-xl mx-auto lg:mx-0">
+            KOMOREBI (โคโมเรบิ) แปลว่า แสงแดดที่ส่องลอดผ่านใบไม้ เราตั้งใจสร้างพื้นที่สงบ ผ่อนคลาย เสิร์ฟกาแฟ Specialty คั่วบดสดใหม่ และขนมอบโฮมเมดสไตล์ญี่ปุ่นที่จะเติมพลังบวกให้ทุกวันของคุณ
+          </p>
+
+          <!-- Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#menu" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-wood-800 hover:bg-wood-900 text-cream-50 font-medium text-base shadow-md hover:shadow-lg transition-all duration-200 text-center flex items-center justify-center gap-2">
+              <i data-lucide="coffee" class="w-5 h-5"></i>
+              <span>สำรวจเมนูแนะนำ</span>
+            </a>
+            <a href="#location" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-cream-200/80 hover:bg-cream-200 text-wood-800 border border-wood-300 font-medium text-base transition-all duration-200 text-center flex items-center justify-center gap-2">
+              <i data-lucide="navigation" class="w-5 h-5"></i>
+              <span>ดูพิกัดร้าน & แผนที่</span>
+            </a>
+          </div>
+
+          <!-- Highlights Bar -->
+          <div class="pt-8 border-t border-cream-200 grid grid-cols-3 gap-4 text-center lg:text-left max-w-lg mx-auto lg:mx-0">
+            <div>
+              <p class="text-2xl font-bold text-wood-800">100%</p>
+              <p class="text-xs text-wood-600">Specialty Arabica</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-wood-800">Fresh</p>
+              <p class="text-xs text-wood-600">Daily Baked Pastry</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-wood-800">4.9 ★</p>
+              <p class="text-xs text-wood-600">รีวิวลูกค้าประทับใจ</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Visual Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <!-- Main Hero Image (Warm Japanese Cafe Vibe) -->
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl aspect-[4/5] border-4 border-white">
+              <img 
+                src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1000&q=80" 
+                alt="KOMOREBI Cafe Interior - Warm and Cozy" 
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-wood-950/60 via-transparent to-transparent"></div>
+              
+              <!-- Badge on image -->
+              <div class="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-white/90 backdrop-blur-md shadow-lg border border-cream-100 flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-amber-100 text-wood-700 flex items-center justify-center shrink-0">
+                  <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm text-wood-900">Slow Bar & Drip Station</h4>
+                  <p class="text-xs text-wood-600">สัมผัสประสบการณ์ Pour-over พิถีพิถันทุกขั้นตอน</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Decorative Card -->
+            <div class="absolute -top-4 -right-4 bg-cream-100/95 backdrop-blur-md border border-cream-300 p-3.5 rounded-2xl shadow-xl hidden sm:flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-matcha-100 text-matcha-600 flex items-center justify-center font-bold">
+                🍵
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-wood-800">Ceremonial Matcha</p>
+                <p class="text-[11px] text-wood-500">มัทฉะแท้ส่งตรงจากเกียวโต</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STORY / PHILOSOPHY SECTION ================= -->
+  <section id="story" class="py-20 bg-cream-100/60 border-y border-cream-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-bold tracking-widest text-wood-500 uppercase">Our Story & Craft</span>
+        <h2 class="text-2xl sm:text-4xl font-bold text-wood-900">ความสุขเรียบง่ายที่เริ่มต้นจากกาแฟดีๆ สักแก้ว</h2>
+        <div class="w-12 h-1 bg-wood-400 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Feature 1 -->
+        <div class="bg-cream-50 p-8 rounded-2xl border border-cream-200 hover:border-wood-300 transition-all hover:-translate-y-1 shadow-sm space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 text-wood-700 flex items-center justify-center">
+            <i data-lucide="coffee" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-wood-900">เมล็ดกาแฟคัดสรรพิเศษ</h3>
+          <p class="text-sm text-wood-600 leading-relaxed">
+            เราคัดเลือกเมล็ด Specialty Arabica ทั้ง Single Origin จากเชียงใหม่ เชียงราย และเมล็ดระดับโลก (Ethiopia, Colombia) คั่วในระดับที่ดึงกลิ่นโทนผลไม้และดอกไม้ออกมาอย่างลงตัว
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-cream-50 p-8 rounded-2xl border border-cream-200 hover:border-wood-300 transition-all hover:-translate-y-1 shadow-sm space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 text-wood-700 flex items-center justify-center">
+            <i data-lucide="croissant" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-wood-900">เบเกอรี่โฮมเมดสไตล์ญี่ปุ่น</h3>
+          <p class="text-sm text-wood-600 leading-relaxed">
+            อบสดใหม่ทุกวันตั้งแต่เช้า ครัวซองต์เนยฝรั่งเศสกรอบนอกนุ่มฉ่ำ เค้กมัทฉะเข้มข้น และชิฟฟ่อนเค้กเนื้อฟูนุ่มหวานกำลังดี เหมาะกับการทานคู่กาแฟแก้วโปรด
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-cream-50 p-8 rounded-2xl border border-cream-200 hover:border-wood-300 transition-all hover:-translate-y-1 shadow-sm space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 text-wood-700 flex items-center justify-center">
+            <i data-lucide="smile" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-wood-900">พื้นที่พักผ่อนที่สบายใจ</h3>
+          <p class="text-sm text-wood-600 leading-relaxed">
+            ออกแบบด้วยสไตล์ Japanese Minimalist ผสมผสานเฟอร์นิเจอร์ไม้โทนอุ่น แสงธรรมชาติ และดนตรี Lo-fi สบายๆ เหมาะสำหรับนั่งทำงาน อ่านหนังสือ หรือพบปะพูดคุย
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SIGNATURE MENU SECTION ================= -->
+  <section id="menu" class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-bold tracking-widest text-wood-500 uppercase">Crafted With Care</span>
+          <h2 class="text-2xl sm:text-4xl font-bold text-wood-900 mt-1">เมนูแนะนำประจำร้าน</h2>
+          <p class="text-sm sm:text-base text-wood-600 mt-2">สัมผัสรสชาติอันเป็นเอกลักษณ์ที่เราตั้งใจสร้างสรรค์</p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap gap-2" id="menuFilters">
+          <button data-category="all" class="filter-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-wood-800 text-cream-50 transition-all">ทั้งหมด</button>
+          <button data-category="coffee" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-cream-200 text-wood-700 hover:bg-cream-300 transition-all">กาแฟ (Coffee)</button>
+          <button data-category="matcha" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-cream-200 text-wood-700 hover:bg-cream-300 transition-all">มัทฉะ & ชา (Matcha)</button>
+          <button data-category="pastry" class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-cream-200 text-wood-700 hover:bg-cream-300 transition-all">เบเกอรี่ (Pastry)</button>
+        </div>
+      </div>
+
+      <!-- Menu Items Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="menuGrid">
+        
+        <!-- Item 1: Komorebi Dirty -->
+        <div class="menu-item bg-white rounded-2xl overflow-hidden border border-cream-200 shadow-sm hover:shadow-md transition-all group" data-cat="coffee">
+          <div class="relative aspect-[4/3] overflow-hidden bg-cream-100">
+            <img src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=700&q=80" alt="Komorebi Dirty Coffee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-amber-700 text-cream-50 text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              Signature
+            </span>
+          </div>
+          <div class="p-6 space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg text-wood-900 group-hover:text-wood-700 transition-colors">Komorebi Dirty</h3>
+              <span class="font-bold text-base text-wood-800">฿140</span>
+            </div>
+            <p class="text-xs text-wood-500">ช็อตเอสเพรสโซ่เข้มข้นสกัดร้อน สกัดลงบนนมสดสูตรพิเศษที่แช่เย็นจัด รสสัมผัสนุ่มละมุน หวานมันกลมกล่อม</p>
+            <div class="pt-3 flex items-center gap-2 text-[11px] text-wood-600 font-medium">
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Nutty & Cocoa</span>
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Iced Only</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Kyoto Uji Matcha Latte -->
+        <div class="menu-item bg-white rounded-2xl overflow-hidden border border-cream-200 shadow-sm hover:shadow-md transition-all group" data-cat="matcha">
+          <div class="relative aspect-[4/3] overflow-hidden bg-cream-100">
+            <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=700&q=80" alt="Kyoto Uji Matcha Latte" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-matcha-600 text-cream-50 text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              Best Seller
+            </span>
+          </div>
+          <div class="p-6 space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg text-wood-900 group-hover:text-wood-700 transition-colors">Kyoto Uji Matcha Latte</h3>
+              <span class="font-bold text-base text-wood-800">฿150</span>
+            </div>
+            <p class="text-xs text-wood-500">ผงมัทฉะเกรดพิธีการจากอูจิ เกียวโต ชงสดชามต่อชามด้วยแปรง Chasen กลิ่นหอมอูมามิ ไม่ขมเฝื่อน</p>
+            <div class="pt-3 flex items-center gap-2 text-[11px] text-wood-600 font-medium">
+              <span class="px-2 py-0.5 rounded bg-matcha-50 border border-matcha-100 text-matcha-600">Ceremonial Grade</span>
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Hot / Iced</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Hand Drip (Single Origin) -->
+        <div class="menu-item bg-white rounded-2xl overflow-hidden border border-cream-200 shadow-sm hover:shadow-md transition-all group" data-cat="coffee">
+          <div class="relative aspect-[4/3] overflow-hidden bg-cream-100">
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80" alt="Hand Drip Coffee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-wood-800 text-cream-50 text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              Specialty
+            </span>
+          </div>
+          <div class="p-6 space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg text-wood-900 group-hover:text-wood-700 transition-colors">Pour-Over Hand Drip</h3>
+              <span class="font-bold text-base text-wood-800">฿160 - 220</span>
+            </div>
+            <p class="text-xs text-wood-500">กาแฟดริปแบบ Slow Bar มีเมล็ด Single Origin ให้เลือกหมุนเวียน (Ethiopia, Kenya, Colombia, Thai Specialty)</p>
+            <div class="pt-3 flex items-center gap-2 text-[11px] text-wood-600 font-medium">
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Light / Medium Roast</span>
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Filter</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: Honey Yuzu Cold Brew -->
+        <div class="menu-item bg-white rounded-2xl overflow-hidden border border-cream-200 shadow-sm hover:shadow-md transition-all group" data-cat="coffee">
+          <div class="relative aspect-[4/3] overflow-hidden bg-cream-100">
+            <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=80" alt="Honey Yuzu Cold Brew" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6 space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg text-wood-900 group-hover:text-wood-700 transition-colors">Honey Yuzu Cold Brew</h3>
+              <span class="font-bold text-base text-wood-800">฿145</span>
+            </div>
+            <p class="text-xs text-wood-500">กาแฟสกัดเย็น 16 ชั่วโมง ผสานน้ำส้มยูสุแท้จากญี่ปุ่นและน้ำผึ้งดอกไม้ป่า เปรี้ยวหวานสดชื่น ดับร้อนได้ดีเยี่ยม</p>
+            <div class="pt-3 flex items-center gap-2 text-[11px] text-wood-600 font-medium">
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Refreshing</span>
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Citrus Notes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5: Shokupan French Toast -->
+        <div class="menu-item bg-white rounded-2xl overflow-hidden border border-cream-200 shadow-sm hover:shadow-md transition-all group" data-cat="pastry">
+          <div class="relative aspect-[4/3] overflow-hidden bg-cream-100">
+            <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=700&q=80" alt="Japanese Shokupan French Toast" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-3 left-3 bg-amber-600 text-cream-50 text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
+              Must Try
+            </span>
+          </div>
+          <div class="p-6 space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg text-wood-900 group-hover:text-wood-700 transition-colors">Classic Shokupan Toast</h3>
+              <span class="font-bold text-base text-wood-800">฿165</span>
+            </div>
+            <p class="text-xs text-wood-500">ขนมปังโชคุปังเนื้อเหนียวนุ่ม ชุบไข่และนมสด ทอดเนยสีทองกรอบนอก นุ่มละลาย เสิร์ฟพร้อมน้ำเชื่อมเมเปิ้ลแท้</p>
+            <div class="pt-3 flex items-center gap-2 text-[11px] text-wood-600 font-medium">
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Fresh Baked</span>
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Sweet Treat</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6: Burnt Basque Cheesecake -->
+        <div class="menu-item bg-white rounded-2xl overflow-hidden border border-cream-200 shadow-sm hover:shadow-md transition-all group" data-cat="pastry">
+          <div class="relative aspect-[4/3] overflow-hidden bg-cream-100">
+            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=700&q=80" alt="Basque Burnt Cheesecake" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6 space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-lg text-wood-900 group-hover:text-wood-700 transition-colors">Basque Burnt Cheesecake</h3>
+              <span class="font-bold text-base text-wood-800">฿155</span>
+            </div>
+            <p class="text-xs text-wood-500">ชีสเค้กหน้าไหม้สไตล์ต้นตำรับ ผิวหน้าหอมคาราเมล เนื้อในเยิ้มครีมมี่ รสชาติเข้มข้นไม่เลี่ยน ทานคู่กาแฟดำเข้ากันที่สุด</p>
+            <div class="pt-3 flex items-center gap-2 text-[11px] text-wood-600 font-medium">
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Creamy</span>
+              <span class="px-2 py-0.5 rounded bg-cream-100 border border-cream-200">Homemade</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PDF Menu Download & Note -->
+      <div class="mt-12 text-center bg-cream-100/70 border border-cream-300 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-left">
+          <h4 class="font-bold text-wood-900 text-base">ต้องการดูเมนูและรายการเมล็ดกาแฟประจำฤดูกาลแบบเต็ม?</h4>
+          <p class="text-xs text-wood-600">เรามีเมล็ด Single Origin หมุนเวียนเปลี่ยนใหม่ทุกๆ 2 สัปดาห์</p>
+        </div>
+        <a href="#location" class="px-5 py-2.5 rounded-xl bg-wood-700 hover:bg-wood-800 text-cream-50 text-xs sm:text-sm font-medium transition-colors inline-flex items-center gap-2">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+          <span>สอบถามเมล็ดกาแฟวันนี้ที่บาร์</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= AMBIANCE & GALLERY ================= -->
+  <section id="ambiance" class="py-20 bg-cream-100/50 border-t border-cream-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+        <span class="text-xs font-bold tracking-widest text-wood-500 uppercase">Atmosphere & Space</span>
+        <h2 class="text-2xl sm:text-4xl font-bold text-wood-900">มุมโปรดที่ให้คุณได้ผ่อนคลาย</h2>
+        <p class="text-sm text-wood-600">ทุกมุมในร้านถูกออกแบบให้มีแสงธรรมชาติส่องถึง พร้อมปลั๊กไฟและ Wi-Fi ความเร็วสูง</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="overflow-hidden rounded-2xl aspect-square shadow-sm">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Cafe Seating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-2xl aspect-square shadow-sm">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=600&q=80" alt="Coffee Brewing" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-2xl aspect-square shadow-sm">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Warm Cozy Cafe Table" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-2xl aspect-square shadow-sm">
+          <img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=600&q=80" alt="Reading Corner" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+      </div>
+
+      <!-- Feature badges -->
+      <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div class="p-4 rounded-xl bg-white border border-cream-200">
+          <i data-lucide="wifi" class="w-5 h-5 text-wood-700 mx-auto mb-2"></i>
+          <p class="text-xs font-bold text-wood-800">High-Speed Wi-Fi</p>
+          <p class="text-[11px] text-wood-500">ทำงานและประชุมสะดวก</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-cream-200">
+          <i data-lucide="zap" class="w-5 h-5 text-wood-700 mx-auto mb-2"></i>
+          <p class="text-xs font-bold text-wood-800">Power Outlets</p>
+          <p class="text-[11px] text-wood-500">จุดชาร์จไฟครบทุกโต๊ะ</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-cream-200">
+          <i data-lucide="heart" class="w-5 h-5 text-wood-700 mx-auto mb-2"></i>
+          <p class="text-xs font-bold text-wood-800">Pet-Friendly</p>
+          <p class="text-[11px] text-wood-500">โซน Outdoor พาต้าวมาได้</p>
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-cream-200">
+          <i data-lucide="car" class="w-5 h-5 text-wood-700 mx-auto mb-2"></i>
+          <p class="text-xs font-bold text-wood-800">Parking Space</p>
+          <p class="text-[11px] text-wood-500">ที่จอดรถหน้าร้าน 15 คัน</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS / SOCIAL PROOF ================= -->
+  <section id="reviews" class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-xl mx-auto mb-14 space-y-2">
+        <span class="text-xs font-bold tracking-widest text-wood-500 uppercase">Customer Reviews</span>
+        <h2 class="text-2xl sm:text-4xl font-bold text-wood-900">เสียงตอบรับจากเพื่อนๆ ของเรา</h2>
+        <div class="flex items-center justify-center gap-1 text-amber-500 text-sm font-semibold pt-1">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          <span class="text-wood-800 ml-2">4.9 / 5 (380+ รีวิวบน Google Maps)</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Review 1 -->
+        <div class="bg-cream-100/50 p-6 rounded-2xl border border-cream-200 space-y-4">
+          <div class="flex items-center gap-1 text-amber-500 text-xs">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="text-sm text-wood-700 italic leading-relaxed">
+            "ชอบบรรยากาศร้านมาก โทนไม้สบายตา แสงแดดยามบ่ายสวยมาก เมนู Komorebi Dirty นัวละมุนสุดๆ ยกให้เป็น dirty ในดวงใจเลยครับ บาริสต้าแนะนำเมล็ดกาแฟเป็นกันเองมาก"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-cream-200">
+            <div class="w-8 h-8 rounded-full bg-wood-300 text-wood-900 font-bold flex items-center justify-center text-xs">
+              K
+            </div>
+            <div>
+              <p class="text-xs font-bold text-wood-800">คุณกานต์ ทวีศิลป์</p>
+              <p class="text-[11px] text-wood-500">Google Local Guide (Level 6)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-cream-100/50 p-6 rounded-2xl border border-cream-200 space-y-4">
+          <div class="flex items-center gap-1 text-amber-500 text-xs">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="text-sm text-wood-700 italic leading-relaxed">
+            "สายมัทฉะห้ามพลาด Uji Matcha Latte เข้มข้น หอมอูมามิแท้ๆ ไม่หวานบาดคอ ขนมปังโทสต์ก็อร่อยมาก มีปลั๊กไฟนั่งทำงานได้เพลิน มีที่จอดรถสะดวกสบายค่ะ"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-cream-200">
+            <div class="w-8 h-8 rounded-full bg-matcha-200 text-matcha-900 font-bold flex items-center justify-center text-xs">
+              P
+            </div>
+            <div>
+              <p class="text-xs font-bold text-wood-800">คุณพลอยไพลิน ม.</p>
+              <p class="text-[11px] text-wood-500">Cafe Hopper & Food Blogger</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-cream-100/50 p-6 rounded-2xl border border-cream-200 space-y-4">
+          <div class="flex items-center gap-1 text-amber-500 text-xs">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="text-sm text-wood-700 italic leading-relaxed">
+            "พาน้องหมามานั่งโซน Outdoor ได้ บรรยากาศสงบเหมือนหลุดมาอยู่เกียวโต กาแฟดริปเมล็ดเอธิโอเปียดีมาก หอมกลิ่นมะลิและเบอร์รี่ แนะนำเลยครับ"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-cream-200">
+            <div class="w-8 h-8 rounded-full bg-amber-200 text-amber-900 font-bold flex items-center justify-center text-xs">
+              T
+            </div>
+            <div>
+              <p class="text-xs font-bold text-wood-800">คุณธนภัทร ร.</p>
+              <p class="text-[11px] text-wood-500">Coffee Enthusiast</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= LOCATION & CONTACT ================= -->
+  <section id="location" class="py-20 bg-cream-100/70 border-t border-cream-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Info & Hours -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <span class="text-xs font-bold tracking-widest text-wood-500 uppercase">Visit Us</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-wood-900 mt-1">การเดินทาง & ข้อมูลติดต่อ</h2>
+            <p class="text-sm text-wood-600 mt-2">ยินดีต้อนรับทุกท่าน แวะมาทักทายและจิบกาแฟด้วยกันนะครับ</p>
+          </div>
+
+          <!-- Contact items -->
+          <div class="space-y-4 text-sm text-wood-700">
+            
+            <div class="flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-xl bg-wood-200/80 text-wood-800 flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-wood-900">ที่ตั้งร้าน</p>
+                <p class="text-wood-600 text-xs sm:text-sm mt-0.5">123/45 ถนนสุขุมวิท แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110 (ใกล้ BTS พร้อมพงษ์ / ทองหล่อ)</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-xl bg-wood-200/80 text-wood-800 flex items-center justify-center shrink-0">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-wood-900">เวลาเปิด - ปิดทำการ</p>
+                <p class="text-wood-600 text-xs sm:text-sm mt-0.5">จันทร์ - ศุกร์: 07:30 - 17:30 น.</p>
+                <p class="text-wood-600 text-xs sm:text-sm">เสาร์ - อาทิตย์ & นักขัตฤกษ์: 08:00 - 18:00 น.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-xl bg-wood-200/80 text-wood-800 flex items-center justify-center shrink-0">
+                <i data-lucide="phone" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-wood-900">เบอร์โทรศัพท์</p>
+                <p class="text-wood-600 text-xs sm:text-sm mt-0.5"><a href="tel:0812345678" class="hover:underline">081-234-5678</a></p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-9 h-9 rounded-xl bg-wood-200/80 text-wood-800 flex items-center justify-center shrink-0">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+              </div>
+              <div>
+                <p class="font-bold text-wood-900">LINE Official</p>
+                <p class="text-wood-600 text-xs sm:text-sm mt-0.5"><a href="#" class="hover:underline text-emerald-700 font-medium">@komorebicafe (คลิกเพื่อแอดไลน์)</a></p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Delivery Apps Buttons -->
+          <div class="pt-4 border-t border-cream-300">
+            <p class="text-xs font-bold text-wood-800 mb-3">สั่งเดลิเวอรีส่งตรงถึงบ้านคุณ:</p>
+            <div class="flex flex-wrap gap-2.5">
+              <a href="#" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+                <span>GrabFood</span>
+              </a>
+              <a href="#" class="px-3.5 py-2 rounded-xl bg-green-500 hover:bg-green-600 text-white text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+                <span>LINE MAN</span>
+              </a>
+              <a href="#" class="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold inline-flex items-center gap-1.5 transition-colors">
+                <span>Robinhood</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Interactive Google Map / Mockup Frame -->
+        <div class="lg:col-span-7">
+          <div class="bg-white p-3 rounded-3xl border border-cream-300 shadow-md">
+            <!-- Simulated Map Container with direct link -->
+            <div class="relative w-full h-[380px] rounded-2xl overflow-hidden bg-cream-200">
+              <iframe 
+                title="KOMOREBI Cafe Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.7667232230493!2d100.57018377598836!3d13.732560897711413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fa03b0d2d31%3A0xa1969a5cf9a9cb0b!2sEmQuartier!5e0!3m2!1sth!2sth!4v1700000000000!5m2!1sth!2sth" 
+                class="w-full h-full border-0" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+
+              <!-- Overlay quick button -->
+              <div class="absolute bottom-4 right-4">
+                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-wood-800/95 hover:bg-wood-950 text-cream-50 rounded-xl text-xs font-medium shadow-lg backdrop-blur-md inline-flex items-center gap-2 transition-all">
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  <span>เปิดดูในแอป Maps</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Parking details info -->
+            <div class="mt-3 px-2 py-2 flex items-center justify-between text-xs text-wood-600">
+              <span class="flex items-center gap-1.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                มีที่จอดรถหน้าร้าน 15 คัน ประทับตราจอดฟรี 2 ชั่วโมง
+              </span>
+              <span class="hidden sm:inline text-wood-500">BTS ทองหล่อ (ทางออก 3)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INSTAGRAM / COMMUNITY FEED ================= -->
+  <section class="py-12 bg-cream-50 border-t border-cream-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 text-wood-600 text-sm font-medium">
+        <i data-lucide="instagram" class="w-4 h-4 text-pink-600"></i>
+        <span>Follow us on Instagram <a href="https://instagram.com" target="_blank" class="text-wood-900 font-bold hover:underline">@komorebi.cafe.bkk</a></span>
+      </div>
+      <p class="text-xs text-wood-500">แท็กรูปของคุณพร้อมติดแฮชแท็ก <strong>#KomorebiMoment</strong> ลุ้นรับเครื่องดื่มฟรีประจำเดือน</p>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-wood-900 text-cream-200 py-12 border-t border-wood-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-wood-800">
+        
+        <!-- Brand col -->
+        <div class="space-y-3 md:col-span-2">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-cream-100 text-wood-900 flex items-center justify-center font-bold text-base">
+              K
+            </div>
+            <span class="font-bold text-xl tracking-wider text-cream-50">KOMOREBI COFFEE</span>
+          </div>
+          <p class="text-xs text-wood-300 leading-relaxed max-w-sm">
+            พื้นที่พักใจสำหรับคนรักกาแฟ บรรยากาศอบอุ่นสไตล์ญี่ปุ่น เมล็ดกาแฟคั่วบดคุณภาพ และเบเกอรี่ทำสดใหม่ทุกเช้า
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-2">
+          <p class="text-sm font-bold text-cream-50">เมนูด่วน</p>
+          <ul class="text-xs space-y-1.5 text-wood-300">
+            <li><a href="#home" class="hover:text-cream-50 transition-colors">หน้าแรก</a></li>
+            <li><a href="#story" class="hover:text-cream-50 transition-colors">ปรัชญา & เรื่องราวร้าน</a></li>
+            <li><a href="#menu" class="hover:text-cream-50 transition-colors">เมนูเครื่องดื่มและเบเกอรี่</a></li>
+            <li><a href="#location" class="hover:text-cream-50 transition-colors">แผนที่และเวลาเปิดทำการ</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Connections -->
+        <div class="space-y-2">
+          <p class="text-sm font-bold text-cream-50">ติดตามเรา</p>
+          <div class="flex gap-3 pt-1">
+            <a href="#" class="w-9 h-9 rounded-full bg-wood-800 hover:bg-wood-700 flex items-center justify-center text-cream-100 transition-colors" aria-label="Facebook">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-wood-800 hover:bg-wood-700 flex items-center justify-center text-cream-100 transition-colors" aria-label="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-wood-800 hover:bg-wood-700 flex items-center justify-center text-cream-100 transition-colors" aria-label="LINE Official">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <p class="text-[11px] text-wood-400 pt-2">WiFi Password ในร้าน: <strong>komorebi2024</strong></p>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-wood-400">
+        <p>© 2026 KOMOREBI Café & Roastery. All rights reserved.</p>
+        <p class="text-wood-400">Crafted with Warmth & Passion ☕</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= MOBILE FLOATING ACTION BAR ================= -->
+  <div class="sm:hidden fixed bottom-4 left-4 right-4 z-40 bg-wood-900/95 backdrop-blur-md rounded-2xl p-2.5 shadow-2xl flex items-center justify-between border border-wood-700">
+    <div class="flex items-center gap-2 pl-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span class="text-xs text-cream-100 font-medium">เปิดบริการ 08:00 - 17:00</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="tel:0812345678" class="p-2 rounded-xl bg-wood-800 text-cream-100 text-xs">
+        <i data-lucide="phone" class="w-4 h-4"></i>
+      </a>
+      <a href="https://maps.google.com" target="_blank" class="px-3.5 py-2 rounded-xl bg-amber-600 text-cream-50 text-xs font-semibold flex items-center gap-1.5 shadow">
+        <i data-lucide="navigation" class="w-3.5 h-3.5"></i>
+        <span>นำทาง</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Menu Category Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-wood-800', 'text-cream-50', 'active');
+          b.classList.add('bg-cream-200', 'text-wood-700');
+        });
+
+        // Add active class to clicked button
+        btn.classList.add('bg-wood-800', 'text-cream-50', 'active');
+        btn.classList.remove('bg-cream-200', 'text-wood-700');
+
+        const category = btn.getAttribute('data-category');
+
+        menuItems.forEach(item => {
+          const itemCat = item.getAttribute('data-cat');
+          if (category === 'all' || itemCat === category) {
+            item.style.display = 'block';
+            // Simple fade-in effect
+            item.style.opacity = '0';
+            setTimeout(() => {
+              item.style.opacity = '1';
+            }, 50);
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
